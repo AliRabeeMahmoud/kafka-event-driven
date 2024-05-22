@@ -1,0 +1,33 @@
+
+### How to run kafka and zookeeper in docker
+
+
+#version: "2"
+#services:
+#  zookeeper:
+#    image: wurstmeister/zookeeper
+#    container_name: zookeeper
+#    ports:
+#      - "2181:2181"
+#    restart: unless-stopped
+#
+#  kafka:
+#    image: wurstmeister/kafka
+#    container_name: kafka
+#    ports:
+#      - "9092:9092"
+#      - "9093:9093"
+#    environment:
+#      KAFKA_ADVERTISED_HOST_NAME: 192.168.56.1
+#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    restart: unless-stopped
+
+    #############################################################################
+    ################################################################################
+# to create a topic in kafka
+# from cmd move to kafka container: docker exec -it kafka bin/bash
+#then: cd /opt/kafka/bin
+#then: topic will created automatically
+#to listen to events/ read messages: kafka-console-consumer.sh --topic cab-location --from-beginning --bootstrap-server 192.168.56.1:9092
